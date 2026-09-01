@@ -1,16 +1,24 @@
-from fastapi import FastAPI
 from pydantic import BaseModel
 from fastapi import FastAPI, HTTPException
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
+
 import yt_dlp
 
 app = FastAPI()
+
+app.mount(
+    "/static",
+    StaticFiles(directory="static"),
+    name="static"
+)
 
 class VideoRequest(BaseModel):
     url: str #expect some data containing url = string
 
 @app.get("/") #when someone visits, run the function
 def home():
-    return {"message": "Backend is working"}
+    return FileResponse("static/index.html")
 
 @app.post("/download")
 def download_video(request: VideoRequest):
