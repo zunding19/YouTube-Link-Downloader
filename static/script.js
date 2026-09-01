@@ -11,48 +11,80 @@ downloadButton.addEventListener("click", async () => {
 
     const url = urlInput.value;
 
-
     if (!url) {
-
         statusText.textContent =
             "Please enter a YouTube URL.";
 
         return;
-
     }
 
 
     statusText.textContent =
-        "Downloading...";
+        "Preparing download...";
 
 
-    const response = await fetch("/download", {
+    try {
 
-        method: "POST",
+        const response = await fetch("/download", {
 
-        headers: {
-            "Content-Type": "application/json"
-        },
+            method: "POST",
 
-        body: JSON.stringify({
-            url: url
-        })
+            headers: {
+                "Content-Type": "application/json"
+            },
 
-    });
+            body: JSON.stringify({
+                url: url
+            })
+
+        });
 
 
-    const data = await response.json();
+        if (!response.ok) {
+
+            const error = await response.json();
+
+            statusText.textContent =
+                error.detail;
+
+            return;
+        }
 
 
-    if (response.ok) {
+        const blob = await response.blob();
+
+
+        const downloadUrl =
+            window.URL.createObjectURL(blob);
+
+
+        const link =
+            document.createElement("a");
+
+
+        link.href = downloadUrl;
+
+        link.download = "youtube-video.mp4";
+
+
+        document.body.appendChild(link);
+
+        link.click();
+
+
+        link.remove();
+
+        window.URL.revokeObjectURL(downloadUrl);
+
 
         statusText.textContent =
-            data.message;
+            "Download started!";
 
-    } else {
+
+    } catch (error) {
 
         statusText.textContent =
-            data.detail;
+            "Something went wrong.";
 
     }
 

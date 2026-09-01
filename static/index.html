@@ -1,36 +1,59 @@
 <!DOCTYPE html>
-
-<html>
+<html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>YouTube Downloader</title>
 
     <link rel="stylesheet" href="/static/style.css">
-
 </head>
 
 <body>
 
-    <div class="container">
-        <h1>YouTube Downloader</h1>
+    <main class="page">
 
-        <p>Paste a YouTube link below.</p>
+        <div class="card">
 
-        <input
-            type="text"
-            id="urlInput"
-            placeholder="Paste YouTube URL"
-        >
+            <div class="badge">
+                Simple Video Downloader
+            </div>
 
-        <button id="downloadButton">
-            Download
-        </button>
+            <h1>
+                YouTube Downloader
+            </h1>
 
-        <p id="status"></p>
+            <p class="subtitle">
+                Paste a YouTube link below and download the video directly to your device.
+            </p>
 
-    </div>
-    <p>Created by Han Zun Ding</p>
+
+            <div class="download-box">
+
+                <input
+                    type="text"
+                    id="urlInput"
+                    placeholder="https://youtube.com/watch?v=..."
+                >
+
+                <button id="downloadButton">
+                    Download
+                </button>
+
+            </div>
+
+
+            <p id="status"></p>
+
+        </div>
+
+
+        <footer>
+            Created by Han Zun Ding
+        </footer>
+
+    </main>
 
 
     <script src="/static/script.js"></script>
