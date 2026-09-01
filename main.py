@@ -1,7 +1,6 @@
+from fastapi import FastAPI
+from pydantic import BaseModel
 import yt_dlp
 
-url = input("Youtube URL: ")
+app = FastAPI()
 
-yt_dlp.YoutubeDL(
-    {"format": "bestvideo+bestaudio/best"}
-).download([url])
