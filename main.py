@@ -7,6 +7,8 @@ import yt_dlp
 import os
 import uuid
 
+os.makedirs("downloads", exist_ok=True)
+
 app = FastAPI()
 
 app.mount(
