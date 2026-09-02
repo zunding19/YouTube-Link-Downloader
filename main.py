@@ -37,7 +37,9 @@ def download_video(
     output_template = f"downloads/{unique_id}.%(ext)s"
 
     options = {
-        "outtmpl": output_template
+    "outtmpl": output_template,
+    "format": "bestvideo*+bestaudio/best",
+    "merge_output_format": "mp4",
     }
 
     try:
