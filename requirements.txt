@@ -1,4 +1,5 @@
 fastapi
 uvicorn
-yt-dlp
+yt-dlp[default]
 certifi
+bgutil-ytdlp-pot-provider
